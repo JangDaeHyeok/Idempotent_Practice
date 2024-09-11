@@ -84,7 +84,7 @@ public class IdempotentAspect {
 
         // header 에 담겨있는 요청키 조회
         String requestKey = getRequestKey(request);
-        // request body 조회
+        // 요청 payload 조회
         String requestValue = getRequestValue(request);
 
         log.info("[IdempotentAspect] ({}) 요청 데이터 :: {}", requestKey, requestValue);
@@ -92,12 +92,12 @@ public class IdempotentAspect {
         // redis 만료시간
         int expireTime = idempotent.expireTime();
 
-        // 중복되는 요청인지 체크
+        // 중복 요청인지 체크
         Boolean isPoss = stringRedisTemplate
                 .opsForValue()
                 .setIfAbsent(requestKey, requestValue, expireTime, TimeUnit.SECONDS);
 
-        // 중복되는 요청인 경우
+        // 중복 요청인 경우
         if(Boolean.FALSE.equals(isPoss)) {
             // 적절한 예외처리 handle
             handleRequestException(requestKey, requestValue);
@@ -117,7 +117,7 @@ public class IdempotentAspect {
     }
 
     /**
-     * 요청 value 조회
+     * 요청 payload 조회
      */
     private String getRequestValue(final HttpServletRequest request) {
         // GET 요청이 아닌 경우 request body 데이터 조회
