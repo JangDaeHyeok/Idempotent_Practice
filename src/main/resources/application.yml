@@ -1,0 +1,24 @@
+spring:
+  # redis
+  data:
+    redis:
+      port: 6379
+      host: ec2-13-125-169-147.ap-northeast-2.compute.amazonaws.com
+      password: jangjjolkit!))$
+  # datasource
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://jdh-rds-mysql.cbqkesomotdd.ap-northeast-2.rds.amazonaws.com:3306/idempotent_practice
+    username: root
+    password: root!))$
+  # jpa
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true # sql show
+        format_sql: true # pretty show
+    hibernate:
+      ddl-auto: none # db init (create, create-drop, update, validate, none)
+  web:
+    resources:
+      add-mappings: false
