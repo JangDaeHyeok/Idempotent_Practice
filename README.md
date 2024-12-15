@@ -6,3 +6,5 @@ Idempotent practice for Spring Boot, AOP, Redis
 - JPA
 - Redis
 - 멱등성 보장 개발
+
+블로그 : https://jangjjolkit.tistory.com/73
